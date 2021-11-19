@@ -64,6 +64,7 @@ speed = {
 --x=9,
 --y=6
 --}
+levelstuff = 1
 bugs={}
 tiles={}
 --functions
@@ -211,21 +212,21 @@ local x=n[1]
 local y=n[2]
 
 if 
-   mget(x  ,y-1)<wall and
-   mget(x+1,y-1)<wall and
-   mget(x-1,y-1)<wall and
-   mget(x  ,y+1)<wall and
-   mget(x+1,y+1)<wall and
-   mget(x-1,y+1)<wall or 
+   mget(x  ,y-levelstuff)<wall and
+   mget(x+levelstuff,y-levelstuff)<wall and
+   mget(x-levelstuff,y-levelstuff)<wall and
+   mget(x  ,y+levelstuff)<wall and
+   mget(x+levelstuff,y+levelstuff)<wall and
+   mget(x-levelstuff,y+levelstuff)<wall or 
 
     
-   mget(x-1,y  )<wall and 
-   mget(x-1,y-1)<wall and 
-   mget(x-1,y+1)<wall and 
+   mget(x-levelstuff,y  )<wall and 
+   mget(x-levelstuff,y-levelstuff)<wall and 
+   mget(x-levelstuff,y+levelstuff)<wall and 
    
-   mget(x+1,y  )<wall and 
-   mget(x+1,y-1)<wall and
-   mget(x+1,y-1)<wall then
+   mget(x+levelstuff,y  )<wall and 
+   mget(x+levelstuff,y-levelstuff)<wall and
+   mget(x+levelstuff,y-levelstuff)<wall then
    return true
   else
    return false
@@ -329,8 +330,11 @@ print("lives".. lives, 5, 131, 12)
    i = 0
  end
  if a == 2 then
+   if limit >= 100 then
    limit = limit/2
+ end
    a = 0
+   levelstuff = levelstuff +1
    
  end
  if c == 2 then
@@ -340,6 +344,8 @@ print("lives".. lives, 5, 131, 12)
  else 
    limit = 1500
    score = 0
+   b = 4
+   levelstuff = 1
    gameOver()
 end
 
